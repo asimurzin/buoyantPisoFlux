@@ -23,6 +23,19 @@
 ##
 
 
+#---------------------------------------------------------------------------   
+# Check is the pythonFlu installed
+try:
+   import Foam
+   pass
+except ImportError:
+   print 
+   print "You must install pythonFlu first( http://sourceforge.net/projects/pythonflu/files/)" 
+   print
+   os._exit( os.EX_UNAVAILABLE )
+   pass
+
+
 #-------------------------------------------------------------------------
 from Foam import FOAM_VERSION, FOAM_REF_VERSION, FOAM_BRANCH_VERSION
 import sys, os
@@ -33,37 +46,26 @@ if FOAM_REF_VERSION( "!=", "010600" ):
 
 #--------------------------------------------------------------------------------------
 if FOAM_REF_VERSION( "==", "010600" ):
-   if __name__ == "__main__" :
-      argv = sys.argv
-      if len( argv ) > 1 and argv[ 1 ] == "-test":
-         argv = None
-         test_dir= os.path.join( os.environ[ "PYFOAM_TESTING_DIR" ],'cases', 'local', 'r1.6', 'heatTransfer', 'buoyantPisoFoam', 'hotRoom' )
-         argv = [ __file__, "-case", test_dir ]
-         pass
-      from Foam.applications.solvers.heatTransfer.r1_6.buoyantPisoFoam import main_standalone
-      os._exit( main_standalone( len( argv ), argv ) )
-      pass
-   else:
-      from Foam.applications.solvers.heatTransfer.r1_6.buoyantPisoFoam import *
-      pass
+    buoyantPisoFlux.r1_6 import *
+    pass
 
 
 #--------------------------------------------------------------------------------------
 if FOAM_BRANCH_VERSION( "dev", ">=", "010600" ):
-   if __name__ == "__main__" :
-      argv = sys.argv
-      if len( argv ) > 1 and argv[ 1 ] == "-test":
-         argv = None
-         test_dir= os.path.join( os.environ[ "PYFOAM_TESTING_DIR" ],'cases', 'propogated', 'r1.6-dev', 'heatTransfer', 'buoyantPisoFoam', 'hotRoom' )
-         argv = [ __file__, "-case", test_dir ]
-         pass
-      from Foam.applications.solvers.heatTransfer.r1_6_dev.buoyantPisoFoam import main_standalone
-      os._exit( main_standalone( len( argv ), argv ) )
-      pass
-   else:
-      from Foam.applications.solvers.heatTransfer.r1_6_dev.buoyantPisoFoam import *
-      pass
+    buoyantPisoFlux.r1_6_dev import *
+    pass
 
 
 #--------------------------------------------------------------------------------------
+def entry_point():
+    import sys; argv = sys.argv
+    return main_standalone( len( argv ), argv )
 
+
+#--------------------------------------------------------------------------------------
+if __name__ == "__main__" :
+    entry_point()
+    pass
+    
+    
+#--------------------------------------------------------------------------------------
