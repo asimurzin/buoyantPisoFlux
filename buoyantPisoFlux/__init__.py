@@ -46,13 +46,13 @@ if FOAM_REF_VERSION( "!=", "010600" ):
 
 #--------------------------------------------------------------------------------------
 if FOAM_REF_VERSION( "==", "010600" ):
-    buoyantPisoFlux.r1_6 import *
+    from buoyantPisoFlux.r1_6 import *
     pass
 
 
 #--------------------------------------------------------------------------------------
 if FOAM_BRANCH_VERSION( "dev", ">=", "010600" ):
-    buoyantPisoFlux.r1_6_dev import *
+    from buoyantPisoFlux.r1_6_dev import *
     pass
 
 
