@@ -26,7 +26,7 @@
 
 #--------------------------------------------------------------------------------------
 from setuptools import setup, find_packages
-buoyantPisoFlux
+
 setup( name = "buoyantPisoFlux",
        description = 'Python front-end of the buoyantPisoFoam',
        author = 'Alexey Petrov',
